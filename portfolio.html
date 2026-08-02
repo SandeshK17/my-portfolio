@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+
+<style>
+:root{--bg:#08081a;--card:rgba(255,255,255,0.04);--border:rgba(255,255,255,0.08);--accent:#7c3aed;--accent2:#3b82f6;--text:#e2e8f0;--muted:#8892a4}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;line-height:1.6}
+
+/* ORBS */
+.bg-orbs{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+.orb{position:absolute;border-radius:50%;filter:blur(80px);opacity:.25}
+.orb1{width:600px;height:600px;background:#7c3aed;top:-200px;left:-200px;animation:f1 9s ease-in-out infinite}
+.orb2{width:500px;height:500px;background:#3b82f6;bottom:-200px;right:-150px;animation:f2 11s ease-in-out infinite}
+.orb3{width:350px;height:350px;background:#ec4899;top:45%;left:45%;animation:f3 13s ease-in-out infinite}
+@keyframes f1{0%,100%{transform:translate(0,0)}50%{transform:translate(50px,35px)}}
+@keyframes f2{0%,100%{transform:translate(0,0)}50%{transform:translate(-40px,-45px)}}
+@keyframes f3{0%,100%{transform:translate(0,0)}50%{transform:translate(25px,-30px)}}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:200;padding:.9rem 2.5rem;display:flex;justify-content:space-between;align-items:center;background:rgba(8,8,26,.88);backdrop-filter:blur(18px);border-bottom:1px solid var(--border)}
+.nav-logo{font-size:1.5rem;font-weight:900;background:linear-gradient(135deg,#a78bfa,#60a5fa);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.nav-links{display:flex;gap:2rem;list-style:none}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:.875rem;transition:color .2s;letter-spacing:.4px}
+.nav-links a:hover{color:#fff}
+
+/* SECTION */
+.sec{padding:5.5rem 2rem;max-width:1080px;margin:0 auto;position:relative;z-index:1}
+.sec-hd{margin-bottom:2.75rem}
+.sec-title{font-size:2rem;font-weight:800;margin-bottom:.5rem}
+.sec-line{width:56px;height:3px;background:linear-gradient(90deg,#7c3aed,#3b82f6);border-radius:2px}
+
+/* HERO */
+#hero{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;position:relative;z-index:1;padding:2rem}
+.h-greeting{font-size:.9rem;color:#a78bfa;letter-spacing:4px;text-transform:uppercase;margin-bottom:1.5rem}
+.h-name{font-size:clamp(3.5rem,10vw,7rem);font-weight:900;background:linear-gradient(135deg,#fff 0%,#a78bfa 45%,#60a5fa 90%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;line-height:1.05;margin-bottom:1.25rem}
+.h-tag{font-size:clamp(.95rem,2.2vw,1.2rem);color:var(--muted);margin-bottom:2.75rem;letter-spacing:.5px}
+.h-tag .s{color:#7c3aed;margin:0 .6rem;font-weight:700}
+.cta-row{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+.btn{padding:.8rem 2rem;border-radius:50px;font-size:.95rem;font-weight:700;text-decoration:none;transition:all .3s;cursor:pointer;display:inline-block;letter-spacing:.3px}
+.btn-p{background:linear-gradient(135deg,#7c3aed,#3b82f6);color:#fff;border:none}
+.btn-p:hover{transform:translateY(-3px);box-shadow:0 14px 35px rgba(124,58,237,.45)}
+.btn-o{background:transparent;color:var(--text);border:1px solid var(--border)}
+.btn-o:hover{border-color:#7c3aed;color:#a78bfa;transform:translateY(-2px)}
+
+/* GLASS */
+.glass{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:1.5rem;transition:all .3s}
+.glass:hover{border-color:rgba(124,58,237,.45);transform:translateY(-4px);box-shadow:0 18px 40px rgba(0,0,0,.4)}
+
+/* ABOUT */
+.about-grid{display:grid;grid-template-columns:auto 1fr;gap:3rem;align-items:start}
+.a-img{width:180px;height:180px;border-radius:50%;background:linear-gradient(135deg,#7c3aed,#ec4899,#3b82f6);display:flex;align-items:center;justify-content:center;font-size:4rem;box-shadow:0 0 55px rgba(124,58,237,.35);flex-shrink:0}
+.a-text p{color:var(--muted);margin-bottom:.9rem;font-size:.95rem}
+.badge-row{display:flex;flex-wrap:wrap;gap:.45rem;margin-top:1.1rem}
+.bdg{padding:.28rem .8rem;border-radius:20px;font-size:.78rem;font-weight:500;background:rgba(124,58,237,.14);border:1px solid rgba(124,58,237,.28);color:#a78bfa}
+
+/* SKILLS */
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(145px,1fr));gap:1rem}
+.sk{text-align:center;padding:1.75rem .75rem}
+.sk-em{font-size:2.4rem;margin-bottom:.7rem;display:block}
+.sk-name{font-weight:700;font-size:.9rem;margin-bottom:.2rem}
+.sk-sub{font-size:.73rem;color:var(--muted)}
+
+/* CERTS */
+.cert-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:1.1rem}
+.cc{display:flex;align-items:center;gap:1rem}
+.cc-ico{width:50px;height:50px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.55rem;flex-shrink:0}
+.cc h4{font-size:.9rem;font-weight:700;margin-bottom:.2rem}
+.cc p{font-size:.78rem;color:var(--muted)}
+
+/* EXPERIENCE */
+.exp-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:1.5rem}
+.ex-num{font-size:2rem;font-weight:900;background:linear-gradient(135deg,#7c3aed,#3b82f6);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:.4rem}
+.ex h3{font-size:1rem;font-weight:700;margin-bottom:.45rem}
+.ex p{color:var(--muted);font-size:.88rem}
+.etag{display:inline-block;margin-top:.7rem;padding:.2rem .6rem;border-radius:6px;font-size:.73rem;background:rgba(59,130,246,.13);border:1px solid rgba(59,130,246,.28);color:#60a5fa}
+
+/* CONTACT */
+.ct-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(195px,1fr));gap:1rem}
+.ct-card{display:flex;align-items:center;gap:.9rem;padding:1.1rem 1.4rem;text-decoration:none;color:var(--text)}
+.ct-ico{font-size:1.7rem;transition:transform .3s}
+.ct-card:hover .ct-ico{transform:scale(1.2) rotate(-6deg)}
+.ct-card h4{font-size:.88rem;font-weight:700}
+.ct-card p{font-size:.77rem;color:var(--muted)}
+
+/* FOOTER */
+footer{text-align:center;padding:2rem;color:var(--muted);font-size:.83rem;border-top:1px solid var(--border);position:relative;z-index:1}
+
+/* CHAT FAB */
+.chat-fab{position:fixed;bottom:2rem;right:2rem;width:58px;height:58px;border-radius:50%;background:linear-gradient(135deg,#7c3aed,#3b82f6);border:none;cursor:pointer;font-size:1.3rem;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 28px rgba(124,58,237,.55);z-index:1000;transition:all .3s}
+.chat-fab:hover{transform:scale(1.1);box-shadow:0 12px 38px rgba(124,58,237,.7)}
+.pulse-ring{position:absolute;width:100%;height:100%;border-radius:50%;background:rgba(124,58,237,.35);animation:pulse 2.2s infinite}
+@keyframes pulse{0%{transform:scale(1);opacity:.7}100%{transform:scale(1.65);opacity:0}}
+
+/* CHAT WINDOW */
+.chat-win{position:fixed;bottom:5.5rem;right:2rem;width:345px;max-height:510px;border-radius:20px;background:#0c0c1e;border:1px solid rgba(124,58,237,.38);box-shadow:0 20px 55px rgba(0,0,0,.7);z-index:999;display:none;flex-direction:column;overflow:hidden}
+.chat-win.open{display:flex;animation:sUp .28s ease}
+@keyframes sUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+.chat-hd{padding:.95rem 1.2rem;background:linear-gradient(135deg,rgba(124,58,237,.28),rgba(59,130,246,.18));border-bottom:1px solid var(--border);display:flex;align-items:center;gap:.75rem}
+.chat-av{width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,#7c3aed,#3b82f6);display:flex;align-items:center;justify-content:center;font-size:1.05rem;flex-shrink:0}
+.chat-hi h4{font-size:.9rem;font-weight:700}
+.chat-hi p{font-size:.73rem;color:#4ade80}
+.chat-msgs{flex:1;overflow-y:auto;padding:.9rem;display:flex;flex-direction:column;gap:.7rem;max-height:320px}
+.msg{max-width:83%;padding:.6rem .9rem;border-radius:14px;font-size:.85rem;line-height:1.55}
+.msg.bot{background:rgba(124,58,237,.17);border:1px solid rgba(124,58,237,.24);align-self:flex-start;border-bottom-left-radius:4px}
+.msg.user{background:rgba(59,130,246,.17);border:1px solid rgba(59,130,246,.24);align-self:flex-end;border-bottom-right-radius:4px}
+.typing{display:flex;gap:5px;align-items:center;padding:.4rem .2rem}
+.typing span{width:7px;height:7px;background:#a78bfa;border-radius:50%;animation:bce .8s infinite}
+.typing span:nth-child(2){animation-delay:.15s}
+.typing span:nth-child(3){animation-delay:.3s}
+@keyframes bce{0%,80%,100%{transform:translateY(0)}40%{transform:translateY(-8px)}}
+.chat-inp-row{padding:.7rem .9rem;border-top:1px solid var(--border);display:flex;gap:.45rem}
+.chat-inp{flex:1;background:rgba(255,255,255,.05);border:1px solid var(--border);border-radius:20px;padding:.48rem .95rem;color:var(--text);font-size:.85rem;outline:none;transition:border-color .2s}
+.chat-inp:focus{border-color:#7c3aed}
+.send-btn{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#7c3aed,#3b82f6);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:.85rem;transition:transform .2s;flex-shrink:0}
+.send-btn:hover{transform:scale(1.12)}
+
+/* FADE */
+.fu{opacity:0;transform:translateY(28px);transition:opacity .65s ease,transform .65s ease}
+.fu.vis{opacity:1;transform:translateY(0)}
+
+/* RESPONSIVE */
+@media(max-width:720px){
+  nav .nav-links{display:none}
+  .about-grid{grid-template-columns:1fr;text-align:center;gap:1.75rem}
+  .a-img{margin:0 auto}
+  .chat-win{width:calc(100vw - 3rem);right:1.5rem}
+}
+::-webkit-scrollbar{width:4px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:rgba(124,58,237,.35);border-radius:2px}
+</style>
+
+<!-- BG -->
+<div class="bg-orbs"><div class="orb orb1"></div><div class="orb orb2"></div><div class="orb orb3"></div></div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">S.</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#certifications">Certifications</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div>
+    <div class="h-greeting">✦ Hello World, I'm</div>
+    <h1 class="h-name">Sandesh</h1>
+    <p class="h-tag">MCA Student <span class="s">|</span> Software Developer <span class="s">|</span> Educator</p>
+    <div class="cta-row">
+      <a href="#experience" class="btn btn-p">View My Work</a>
+      <a href="#contact" class="btn btn-o">Get in Touch</a>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="sec fu" id="about">
+  <div class="sec-hd"><h2 class="sec-title">About Me</h2><div class="sec-line"></div></div>
+  <div class="about-grid">
+    <div class="a-img">👨‍💻</div>
+    <div class="a-text">
+      <p>I'm a 22-year-old MCA student at Dr. Shakuntala Misra National Rehabilitation University, Lucknow, currently in my 3rd semester. With a B.Sc. in Computer Science (2024), I bring a strong academic foundation combined with hands-on project and research experience.</p>
+      <p>My journey spans competitive programming (100 Days of DSA on LeetCode in C++), AI/ML exploration with Python, and web development. Beyond tech, I mentor students from Classes 1–10 in English, Science, French, and Maths — blending my passion for coding with knowledge-sharing.</p>
+      <p>Actively seeking internship opportunities to contribute to real-world projects and grow as a developer.</p>
+      <div class="badge-row">
+        <span class="bdg">📍 Lucknow, India</span>
+        <span class="bdg">🎓 MCA · 3rd Sem</span>
+        <span class="bdg">💼 Open to Internships</span>
+        <span class="bdg">⚡ 100 Days of DSA</span>
+        <span class="bdg">🏆 5+ Certifications</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section class="sec fu" id="skills">
+  <div class="sec-hd"><h2 class="sec-title">Skills</h2><div class="sec-line"></div></div>
+  <div class="skills-grid">
+    <div class="glass sk"><span class="sk-em">⚡</span><div class="sk-name">C++</div><div class="sk-sub">DSA & Competitive</div></div>
+    <div class="glass sk"><span class="sk-em">🐍</span><div class="sk-name">Python</div><div class="sk-sub">ML · Data · Web</div></div>
+    <div class="glass sk"><span class="sk-em">🧠</span><div class="sk-name">AI & ML</div><div class="sk-sub">Models & Pipelines</div></div>
+    <div class="glass sk"><span class="sk-em">🌐</span><div class="sk-name">Web Dev</div><div class="sk-sub">HTML · CSS · JS</div></div>
+    <div class="glass sk"><span class="sk-em">📊</span><div class="sk-name">Data Analysis</div><div class="sk-sub">Pandas · NumPy</div></div>
+    <div class="glass sk"><span class="sk-em">🗄️</span><div class="sk-name">Databases</div><div class="sk-sub">SQL & NoSQL</div></div>
+    <div class="glass sk"><span class="sk-em">🔧</span><div class="sk-name">DSA</div><div class="sk-sub">LeetCode · 100 Days</div></div>
+    <div class="glass sk"><span class="sk-em">🎓</span><div class="sk-name">Education</div><div class="sk-sub">Classes 1–10 Tutor</div></div>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section class="sec fu" id="certifications">
+  <div class="sec-hd"><h2 class="sec-title">Certifications</h2><div class="sec-line"></div></div>
+  <div class="cert-grid">
+    <div class="glass cc">
+      <div class="cc-ico" style="background:rgba(234,88,12,.13);border:1px solid rgba(234,88,12,.28)">🔴</div>
+      <div><h4>Oracle</h4><p>AI & Cloud Technologies</p></div>
+    </div>
+    <div class="glass cc">
+      <div class="cc-ico" style="background:rgba(37,99,235,.13);border:1px solid rgba(37,99,235,.28)">🔵</div>
+      <div><h4>IBM</h4><p>AI & Computer Science</p></div>
+    </div>
+    <div class="glass cc">
+      <div class="cc-ico" style="background:rgba(5,150,105,.13);border:1px solid rgba(5,150,105,.28)">🟢</div>
+      <div><h4>TCS iON</h4><p>Computer Science</p></div>
+    </div>
+    <div class="glass cc">
+      <div class="cc-ico" style="background:rgba(124,58,237,.13);border:1px solid rgba(124,58,237,.28)">🟣</div>
+      <div><h4>Udemy</h4><p>AI, ML & Development</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section class="sec fu" id="experience">
+  <div class="sec-hd"><h2 class="sec-title">Experience & Projects</h2><div class="sec-line"></div></div>
+  <div class="exp-grid">
+    <div class="glass ex">
+      <div class="ex-num">100</div>
+      <h3>Days of DSA Challenge</h3>
+      <p>Rigorous 100-day C++ challenge on LeetCode — covering arrays, trees, graphs, DP, and advanced algorithms with consistent daily practice.</p>
+      <span class="etag">C++ · LeetCode · Algorithms</span>
+    </div>
+    <div class="glass ex">
+      <div class="ex-num">7+</div>
+      <h3>Years of Teaching</h3>
+      <p>Mentoring students Classes 1–10 in English, Science, French & Maths. Created structured lesson plans, mock tests, and Vedic Maths sessions.</p>
+      <span class="etag">Educator · Curriculum Design</span>
+    </div>
+    <div class="glass ex">
+      <div class="ex-num">AI</div>
+      <h3>AI & ML Exploration</h3>
+      <p>Building production-ready skills in Data Analysis, Machine Learning, and Python-based AI applications — targeting real-world deployments.</p>
+      <span class="etag">Python · ML · Data Science</span>
+    </div>
+    <div class="glass ex">
+      <div class="ex-num">5+</div>
+      <h3>Industry Certifications</h3>
+      <p>Earned credentials in AI, CS & Cloud from Oracle, IBM, TCS, and Udemy — continuously upskilling beyond the university curriculum.</p>
+      <span class="etag">Oracle · IBM · TCS · Udemy</span>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="sec fu" id="contact">
+  <div class="sec-hd"><h2 class="sec-title">Get in Touch</h2><div class="sec-line"></div></div>
+  <p style="color:var(--muted);margin-bottom:2rem;max-width:480px;font-size:.95rem">Open to internships, project collaborations, and tutoring. Let's build something great together!</p>
+  <div class="ct-grid">
+    <a href="mailto:sndshkshp@gmail.com" class="glass ct-card">
+      <span class="ct-ico">📧</span><div><h4>Email</h4><p>Drop me a message</p></div>
+    </a>
+    <a href="https://www.linkedin.com/in/sandeshkashyap" target="_blank" class="glass ct-card">
+      <span class="ct-ico">💼</span><div><h4>LinkedIn</h4><p>Connect with me</p></div>
+    </a>
+    <a href="https://github.com/SandeshK17" target="_blank" class="glass ct-card">
+      <span class="ct-ico">🐙</span><div><h4>GitHub</h4><p>Check my code</p></div>
+    </a>
+    <a href="https://leetcode.com/u/Sandesh17/" target="_blank" class="glass ct-card">
+      <span class="ct-ico">⚡</span><div><h4>LeetCode</h4><p>My DSA profile</p></div>
+    </a>
+  </div>
+</section>
+
+<footer>
+  <p>✦ Crafted with passion by <strong>Sandesh</strong> &nbsp;·&nbsp; Lucknow, India &nbsp;·&nbsp; 2026</p>
+  <p style="margin-top:.4rem;font-size:.75rem;opacity:.55">MCA Student · Software Developer · Educator</p>
+</footer>
+
+<!-- CHAT FAB -->
+<button class="chat-fab" id="chatFab" onclick="toggleChat()">
+  <div class="pulse-ring"></div>
+  <span id="fabIco">🤖</span>
+</button>
+
+<!-- CHAT WINDOW -->
+<div class="chat-win" id="chatWin">
+  <div class="chat-hd">
+    <div class="chat-av">✨</div>
+    <div class="chat-hi">
+      <h4>Sandesh AI</h4>
+      <p>● Online · Ask me anything</p>
+    </div>
+  </div>
+  <div class="chat-msgs" id="chatMsgs">
+    <div class="msg bot">👋 Hi! I'm Sandesh's AI assistant. Ask me about his skills, projects, or availability!</div>
+    <div class="msg bot">Try: <em>"Is he open to internships?"</em> or <em>"What are his top skills?"</em></div>
+  </div>
+  <div class="chat-inp-row">
+    <input class="chat-inp" id="chatInp" placeholder="Ask about Sandesh..." onkeydown="if(event.key==='Enter')sendMsg()">
+    <button class="send-btn" onclick="sendMsg()">➤</button>
+  </div>
+</div>
+
+<script>
+// FADE IN ON SCROLL
+const obs = new IntersectionObserver(es => es.forEach(e => { if(e.isIntersecting) e.target.classList.add('vis') }), {threshold:.12});
+document.querySelectorAll('.fu').forEach(el => obs.observe(el));
+
+// CHAT
+let open = false;
+function toggleChat() {
+  open = !open;
+  document.getElementById('chatWin').classList.toggle('open', open);
+  document.getElementById('fabIco').textContent = open ? '✕' : '🤖';
+}
+
+const SYS = `You are an AI assistant embedded in Sandesh's personal portfolio website. Answer questions about him concisely, warmly, and professionally (2–4 sentences unless more detail is needed).
+
+ABOUT SANDESH:
+- Name: Sandesh | Age: 22 | Location: Lucknow, India
+- Education: MCA (Master of Computer Applications), 3rd semester, Dr. Shakuntala Misra National Rehabilitation University, Lucknow (enrolled July 2025). Prior: B.Sc. Computer Science, 2024.
+- Technical Skills: C++ (competitive programming & DSA), Python (ML, Data Analysis, Web Dev), AI & Machine Learning, Web Development (HTML/CSS/JS), Databases (SQL/NoSQL), Data Analysis (Pandas, NumPy).
+- Achievements: Completed 100 Days of DSA challenge on LeetCode in C++. Multiple industry certifications.
+- Certifications: Oracle (AI & Cloud), IBM (AI & CS), TCS iON (CS), Udemy (AI, ML, Dev).
+- Teaching: Mentors students Classes 1–10 in English, Science, French, and Maths. Created lesson plans, mock tests, Vedic Maths sessions.
+- Availability: Actively seeking internship opportunities in Software Development, AI/ML, Data Science. Open to freelance projects and collaborations.
+- Personality: Disciplined, self-driven, passionate about tech and education, focused on continuous growth.
+- Goals: Become a skilled Software Developer, excel in AI/ML, build impactful projects.
+
+If you don't know something specific, say so and suggest contacting Sandesh directly. Keep responses friendly and professional.`;
+
+let history = [];
+
+async function sendMsg() {
+  const inp = document.getElementById('chatInp');
+  const txt = inp.value.trim();
+  if(!txt) return;
+  inp.value = '';
+  addMsg(txt, 'user');
+  history.push({role:'user', content: txt});
+  const loader = addTyping();
+  try {
+    const r = await fetch('https://api.anthropic.com/v1/messages', {
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({model:'claude-sonnet-4-6', max_tokens:1000, system:SYS, messages:history})
+    });
+    const d = await r.json();
+    const reply = d.content.map(c => c.text||'').join('');
+    loader.remove();
+    addMsg(reply, 'bot');
+    history.push({role:'assistant', content: reply});
+  } catch(e) {
+    loader.remove();
+    addMsg('Something went wrong. Please try again!', 'bot');
+  }
+}
+
+function addMsg(text, who) {
+  const c = document.getElementById('chatMsgs');
+  const el = document.createElement('div');
+  el.className = `msg ${who}`;
+  el.textContent = text;
+  c.appendChild(el);
+  c.scrollTop = c.scrollHeight;
+  return el;
+}
+
+function addTyping() {
+  const c = document.getElementById('chatMsgs');
+  const el = document.createElement('div');
+  el.className = 'msg bot';
+  el.innerHTML = '<div class="typing"><span></span><span></span><span></span></div>';
+  c.appendChild(el);
+  c.scrollTop = c.scrollHeight;
+  return el;
+}
+</script>
