@@ -342,7 +342,8 @@ async function sendMsg() {
         body: JSON.stringify({
           system_instruction: { parts: [{ text: system }] },
           contents
-        });
+        })
+      });
     const d = await r.json();
     const reply = d.content.map(c => c.text||'').join('');
     loader.remove();
