@@ -9,7 +9,7 @@
 
 > A modern, responsive personal portfolio website with a built-in AI chatbot — deployed live on Vercel.
 
-🔗 **Live Site:** [your-portfolio.vercel.app]([https://your-portfolio.vercel.app](https://my-portfolio-nine-gamma-80.vercel.app/))
+🔗 **Live Site:** (https://my-portfolio-nine-gamma-80.vercel.app/)
 
 ---
 
